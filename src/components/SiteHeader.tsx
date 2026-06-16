@@ -1,19 +1,17 @@
 import Link from "next/link";
-import { Search, User, Heart, ShoppingBag } from "lucide-react";
+import { User, Heart, ShoppingBag } from "lucide-react";
+import SearchModal from "./SearchModal";
 
 const NAV = [
-  { label: "New", href: "#" },
+  { label: "New", href: "/shop" },
   { label: "Shop", href: "/shop" },
-  { label: "Gifts", href: "#" },
-  { label: "Home", href: "#" },
-  { label: "Stories", href: "#" },
+  { label: "Gifts", href: "/shop" },
 ];
 
-const ICONS = [
-  { label: "Search", Icon: Search },
-  { label: "Account", Icon: User },
-  { label: "Wishlist", Icon: Heart },
-  { label: "Cart", Icon: ShoppingBag },
+const LINKS = [
+  { label: "Account", href: "/account", Icon: User },
+  { label: "Wishlist", href: "/wishlist", Icon: Heart },
+  { label: "Cart", href: "/cart", Icon: ShoppingBag },
 ];
 
 export default function SiteHeader() {
@@ -32,15 +30,16 @@ export default function SiteHeader() {
           </Link>
 
           <div className="absolute right-0 flex items-center gap-4 sm:gap-5">
-            {ICONS.map(({ label, Icon }) => (
-              <button
+            <SearchModal />
+            {LINKS.map(({ label, href, Icon }) => (
+              <Link
                 key={label}
-                type="button"
+                href={href}
                 aria-label={label}
                 className="text-foreground/80 transition-colors hover:text-foreground"
               >
                 <Icon className="h-5 w-5" strokeWidth={1.5} aria-hidden="true" />
-              </button>
+              </Link>
             ))}
           </div>
         </div>

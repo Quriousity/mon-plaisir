@@ -6,7 +6,7 @@ export default function Accordion({
   items,
   defaultOpen = 0,
 }: {
-  items: { title: string; content: ReactNode }[];
+  items: { title: string; content: ReactNode; icon?: ReactNode }[];
   defaultOpen?: number;
 }) {
   const [open, setOpen] = useState<number | null>(defaultOpen);
@@ -22,7 +22,10 @@ export default function Accordion({
               className="flex w-full items-center justify-between py-4 text-left text-sm font-medium"
               aria-expanded={isOpen}
             >
-              {item.title}
+              <span className="flex items-center gap-3">
+                {item.icon}
+                {item.title}
+              </span>
               <span className="text-lg leading-none text-muted">
                 {isOpen ? "–" : "+"}
               </span>
